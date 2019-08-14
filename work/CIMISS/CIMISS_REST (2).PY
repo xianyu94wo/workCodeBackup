@@ -13,15 +13,11 @@ if __name__ == '__main__':
     #     排序：按照站号从小到大
 
     baseUrl = "http://10.181.89.55/cimiss-web/api?" \
-              "userId=BEXN_QXT_Yousangjie&" \
-              "pwd=Ysj8894315&" \
-              "interfaceId=getSurfEleInRegionByTimeRange&" \
-              "dataCode=SURF_CHN_MUL_HOR&" \
-              "timeRange=[20180901000000,20181001010000]&" \
-              "adminCodes=630000&" \
-              "elements=Station_Id_C,Year,Mon,Day,Hour,PRE_1h&" \
-              "eleValueRanges=PRE_1h:[10,999)&" \
-              "dataFormat=text"
+              "userId=BEXN_QXT_Yousangjie&pwd=Ysj8894315&" \
+              "interfaceId=getSurfEleByTimeRangeAndStaID&dataCode=SURF_CHN_MUL_HOR&" \
+              "elements=Year,Mon,Day,Hour&" \
+              "timeRange=[20170101000000,20180101000000]&" \
+              "staIds=52868&dataFormat=text"
     # 2. 调用接口
 
     req = request.Request(baseUrl)
@@ -30,8 +26,8 @@ if __name__ == '__main__':
     response = urlopen(req).read().decode("utf-8")
     print(response)
     # 3. 输出接口
-    path = "E:\\data\\"
-    filename = "rain1h.txt"
+    path = "E:/Rain1hForEveryNStation/"
+    filename = "2017TIME.txt"
     file1 =  open(path+filename, "w")
     file1.write(response.strip("\n"))
     file1.close()
